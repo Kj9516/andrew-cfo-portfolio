@@ -1,115 +1,96 @@
-const capabilities = [
-  "Выстраиваю управленческий учёт под бизнес-процессы компании",
-  "Показываю реальную прибыль, движение денег и финансовые риски",
-  "Помогаю предотвращать кассовые разрывы и планировать платежи",
-  "Участвую в управленческих решениях на основе данных",
-];
+import Image from "next/image";
+import Link from "next/link";
+import { CaseExplorer } from "./case-explorer";
+import { ContactCta, Footer, Header } from "./components";
+import { proofPoints, workFormats } from "./data";
 
 export default function Home() {
   return (
     <main>
-      <header className="header shell">
-        <a className="brand" href="#top" aria-label="На главную">
-          <span className="brand-mark">АС</span>
-          <span>Андрей Сусленков</span>
-        </a>
-        <a className="header-contact" href="https://t.me/andrey_findir" target="_blank" rel="noreferrer">
-          Написать в Telegram
-        </a>
-      </header>
-
-      <section className="hero" id="top">
-        <div className="hero-grid shell">
+      <div className="dark-stage">
+        <Header dark />
+        <section className="hero shell" id="top">
           <div className="hero-copy">
-            <p className="eyebrow">Финансовый директор на аутсорсе</p>
-            <h1>Цифры бизнеса должны помогать принимать решения</h1>
-            <p className="lead">
-              Помогаю собственникам малого и среднего бизнеса видеть реальную финансовую картину,
-              управлять прибылью и сохранять контроль над деньгами.
-            </p>
-            <div className="actions">
-              <a className="button button-primary" href="https://t.me/andrey_findir" target="_blank" rel="noreferrer">
-                Обсудить задачу
-                <span aria-hidden="true">↗</span>
-              </a>
-              <a className="button button-secondary" href="#about">Обо мне</a>
+            <p className="kicker kicker-light">Финансовый директор на аутсорсе</p>
+            <h1>Цифры, после которых <em>понятно, что делать.</em></h1>
+            <p className="hero-lead">Строю управленческий учёт, который показывает реальное состояние бизнеса и помогает собственнику принимать решения без финансового самообмана.</p>
+            <div className="hero-actions">
+              <a className="button button-primary" href="https://t.me/andrey_findir" target="_blank" rel="noreferrer">Обсудить бизнес <span aria-hidden="true">↗</span></a>
+              <Link className="button button-ghost" href="/materials">Забрать таблицы</Link>
             </div>
           </div>
+          <div className="hero-visual" aria-label="Финансовая система собирается из разрозненных данных">
+            <div className="portrait-frame">
+              <Image src="/images/andrey-suslenkov.jpg" alt="Андрей Сусленков, финансовый директор" fill priority sizes="(max-width: 800px) 90vw, 430px" />
+              <div className="portrait-caption"><span>Андрей Сусленков</span><span>Финдиректор и предприниматель</span></div>
+            </div>
+            <div className="floating-metric metric-one"><span>Деньги на счетах</span><strong>4 820 000 ₽</strong><small>остаток подтверждён</small></div>
+            <div className="floating-metric metric-two"><span>Кассовый разрыв</span><strong>не ожидается</strong><small>следующие 30 дней</small></div>
+            <div className="floating-metric metric-three"><span>Управленческий сигнал</span><strong>Прибыль ≠ деньги</strong><small>проверьте обязательства</small></div>
+          </div>
+        </section>
+        <div className="system-status shell"><span className="status-dot" /> Финансовая картина собрана <span>Данные → Аналитика → Решение</span></div>
+      </div>
 
-          <aside className="metric-card" aria-label="Опыт Андрея">
-            <div className="metric-row">
-              <strong>7+</strong>
-              <span>лет в управленческом учёте и финансовом сопровождении</span>
-            </div>
-            <div className="metric-row">
-              <strong>5</strong>
-              <span>лет опыта собственника бизнеса</span>
-            </div>
-            <p className="metric-note">
-              Не отчётность ради отчётности. Финансовая система, после которой понятно, что делать.
-            </p>
-          </aside>
+      <section className="proof-strip" aria-label="Результаты и опыт">
+        <div className="shell proof-grid">
+          {proofPoints.map((point) => <div key={point.value}><strong>{point.value}</strong><span>{point.label}</span></div>)}
         </div>
       </section>
 
-      <section className="about shell" id="about">
-        <div className="section-heading">
-          <p className="section-number">01 / Обо мне</p>
+      <section className="cases-section shell" id="cases">
+        <div className="section-intro">
+          <p className="kicker">Кейсы / Не отчёты, а изменения</p>
+          <h2>Что меняется, когда бизнес начинает видеть себя в цифрах</h2>
+          <p>Каждый кейс — не перечень таблиц, а конкретный переход от финансовой слепоты к управляемому решению.</p>
+        </div>
+        <CaseExplorer />
+      </section>
+
+      <section className="materials-teaser">
+        <div className="shell materials-teaser-grid">
+          <div>
+            <p className="kicker">Бесплатные материалы</p>
+            <h2>Начните управлять деньгами уже сегодня</h2>
+            <p>Два готовых платёжных календаря в Google Sheets. Без регистрации, подписки и скрытой продажи.</p>
+            <Link className="button button-primary" href="/materials">Выбрать таблицу <span aria-hidden="true">→</span></Link>
+          </div>
+          <div className="sheet-preview" aria-hidden="true">
+            <div className="sheet-window">
+              <div className="sheet-toolbar"><i /><i /><i /><span>Платёжный календарь</span></div>
+              <div className="sheet-kpis"><div><span>Остаток</span><strong>820 000 ₽</strong></div><div><span>План</span><strong>+240 000 ₽</strong></div></div>
+              <div className="sheet-row sheet-head"><span>Дата</span><span>Статья</span><span>Сумма</span></div>
+              <div className="sheet-row"><span>18.07</span><span>Поступления</span><span className="positive">+350 000</span></div>
+              <div className="sheet-row"><span>21.07</span><span>Аренда</span><span>−110 000</span></div>
+              <div className="sheet-tabs"><span>00 Дашборд</span><span>01 Операции</span><span>02 ДДС</span></div>
+            </div>
+            <div className="free-badge">0 ₽<small>навсегда</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="about-section shell" id="about">
+        <div className="about-image"><Image src="/images/andrey-suslenkov.jpg" alt="Андрей Сусленков за работой" fill sizes="(max-width: 800px) 100vw, 470px" /></div>
+        <div className="about-content">
+          <p className="kicker">Обо мне / Вижу обе стороны</p>
           <h2>Смотрю на финансы глазами собственника</h2>
-        </div>
-        <div className="about-copy">
-          <p>
-            Более семи лет я занимаюсь управленческим учётом и финансовым сопровождением бизнеса.
-            Пять из них развивал собственный интернет-магазин, поэтому знаю, как решения выглядят
-            не только в таблице, но и на практике.
-          </p>
-          <p>
-            Я не играю в красивые графики. Моя задача — показать, сколько бизнес действительно
-            зарабатывает, где теряет деньги и какие действия можно предпринимать без лишнего риска.
-          </p>
+          <p className="large-copy">Более семи лет занимаюсь управленческим учётом. Пять из них развивал собственный интернет-магазин с оборотом более 40 млн ₽ в год.</p>
+          <p>Поэтому я знаю, как решение выглядит не только в отчёте, но и в момент, когда нужно платить зарплаты, инвестировать или вовремя отказаться от неработающей модели.</p>
+          <div className="about-facts"><div><strong>7+</strong><span>лет в финансах</span></div><div><strong>5</strong><span>лет собственник</span></div><div><strong>40+</strong><span>млн ₽ оборот своего бизнеса</span></div></div>
         </div>
       </section>
 
-      <section className="work-section">
+      <section className="formats-section" id="formats">
         <div className="shell">
-          <div className="section-heading light">
-            <p className="section-number">02 / Чем помогаю</p>
-            <h2>Превращаю разрозненные данные в систему управления</h2>
+          <div className="section-intro section-intro-light"><p className="kicker kicker-light">Форматы работы</p><h2>Система под вашу задачу,<br />а не бизнес под шаблон</h2></div>
+          <div className="formats-grid">
+            {workFormats.map((format) => <article key={format.number}><span>{format.number}</span><h3>{format.title}</h3><p>{format.description}</p><small>{format.fit}</small><a href="https://t.me/andrey_findir" target="_blank" rel="noreferrer">Обсудить формат ↗</a></article>)}
           </div>
-          <ol className="capabilities">
-            {capabilities.map((item, index) => (
-              <li key={item}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <p>{item}</p>
-              </li>
-            ))}
-          </ol>
         </div>
       </section>
 
-      <section className="contact shell">
-        <div>
-          <p className="section-number">03 / Контакты</p>
-          <h2>Разберём финансовую ситуацию вашего бизнеса</h2>
-          <p>
-            На первой встрече определим, даст ли управленческий учёт практический эффект и какой
-            формат работы подойдёт именно вашей компании.
-          </p>
-        </div>
-        <div className="contact-links">
-          <a href="https://t.me/andrey_findir" target="_blank" rel="noreferrer">
-            <span>Telegram</span><strong>@andrey_findir ↗</strong>
-          </a>
-          <a href="mailto:suslenkov.andrew@mail.ru">
-            <span>Почта</span><strong>suslenkov.andrew@mail.ru ↗</strong>
-          </a>
-        </div>
-      </section>
-
-      <footer className="footer shell">
-        <span>© {new Date().getFullYear()} Андрей Сусленков</span>
-        <span>Финансовая архитектура для бизнеса</span>
-      </footer>
+      <ContactCta />
+      <Footer />
     </main>
   );
 }
