@@ -14,15 +14,15 @@ export default function Home() {
           <div className="hero-copy">
             <p className="kicker kicker-light">Финансовый директор на аутсорсе</p>
             <h1>Цифры, после которых <em>понятно, что делать.</em></h1>
-            <p className="hero-lead">Строю управленческий учёт, который показывает реальное состояние бизнеса и помогает собственнику принимать решения без финансового самообмана.</p>
+            <p className="hero-lead">Строю управленческий учёт, который показывает прибыль, обязательства и движение денег. Собственник видит данные до решения, а не после ошибки.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="https://t.me/andrey_findir" target="_blank" rel="noreferrer">Обсудить бизнес <span aria-hidden="true">↗</span></a>
               <Link className="button button-ghost" href="/materials">Забрать таблицы</Link>
             </div>
           </div>
-          <div className="hero-visual" aria-label="Финансовая система собирается из разрозненных данных">
+          <div className="hero-visual" aria-label="Портрет Андрея Сусленкова и примеры финансовых показателей">
             <div className="portrait-frame">
-              <Image src="/images/andrey-suslenkov.jpg" alt="Андрей Сусленков, финансовый директор" fill priority sizes="(max-width: 800px) 90vw, 430px" />
+              <Image src="/images/andrey-suslenkov.jpg" alt="Портрет Андрея Сусленкова" fill priority sizes="(max-width: 800px) 90vw, 430px" />
               <div className="portrait-caption"><span>Андрей Сусленков</span><span>Финдиректор и предприниматель</span></div>
             </div>
             <div className="floating-metric metric-one"><span>Деньги на счетах</span><strong>4 820 000 ₽</strong><small>остаток подтверждён</small></div>
@@ -30,7 +30,7 @@ export default function Home() {
             <div className="floating-metric metric-three"><span>Управленческий сигнал</span><strong>Прибыль ≠ деньги</strong><small>проверьте обязательства</small></div>
           </div>
         </section>
-        <div className="system-status shell"><span className="status-dot" /> Финансовая картина собрана <span>Данные → Аналитика → Решение</span></div>
+        <div className="system-status shell"><span className="status-dot" /> Финансовые данные собраны <span>Данные → Аналитика → Решение</span></div>
       </div>
 
       <section className="proof-strip" aria-label="Результаты и опыт">
@@ -41,9 +41,9 @@ export default function Home() {
 
       <section className="cases-section shell" id="cases">
         <div className="section-intro">
-          <p className="kicker">Кейсы / Не отчёты, а изменения</p>
-          <h2>Что меняется, когда бизнес начинает видеть себя в цифрах</h2>
-          <p>Каждый кейс — не перечень таблиц, а конкретный переход от финансовой слепоты к управляемому решению.</p>
+          <p className="kicker">Кейсы / Отчёты и решения</p>
+          <h2>Что меняется, когда решения опираются на цифры</h2>
+          <p>В каждом кейсе показаны исходная проблема, найденная причина, работа с учётом и итог для собственника.</p>
         </div>
         <CaseGrid items={orderedCases} getHref={(caseItem) => `/cases/${caseItem.slug}`} />
         <div className="section-link-row">
@@ -55,8 +55,8 @@ export default function Home() {
         <div className="shell materials-teaser-grid">
           <div>
             <p className="kicker">Бесплатные материалы</p>
-            <h2>Начните управлять деньгами уже сегодня</h2>
-            <p>Два готовых платёжных календаря в Google Sheets. Без регистрации, подписки и скрытой продажи.</p>
+            <h2>Планируйте платежи в готовой таблице</h2>
+            <p>Два платёжных календаря в Google Sheets. Их можно открыть, скопировать и адаптировать под свои статьи.</p>
             <Link className="button button-primary" href="/materials">Выбрать таблицу <span aria-hidden="true">→</span></Link>
           </div>
           <div className="sheet-preview" aria-hidden="true">
@@ -74,19 +74,19 @@ export default function Home() {
       </section>
 
       <section className="about-section shell" id="about">
-        <div className="about-image"><Image src="/images/andrey-suslenkov.jpg" alt="Андрей Сусленков за работой" fill sizes="(max-width: 800px) 100vw, 470px" /></div>
+        <div className="about-image"><Image src="/images/andrey-suslenkov.jpg" alt="Портрет Андрея Сусленкова" fill sizes="(max-width: 800px) 100vw, 470px" /></div>
         <div className="about-content">
           <p className="kicker">Обо мне / Вижу обе стороны</p>
           <h2>Смотрю на финансы глазами собственника</h2>
-          <p className="large-copy">Я отвечал за финансы не только как консультант, но и как собственник: сам проходил найм, закупки, сезонность, обязательства и решения по развитию.</p>
-          <p>Поэтому я знаю, как решение выглядит не только в отчёте, но и в момент, когда нужно платить зарплаты, инвестировать или вовремя отказаться от неработающей модели.</p>
+          <p className="large-copy">Я отвечал за финансы как консультант и как собственник: нанимал людей, закупал товар, проходил сезонность и закрывал обязательства.</p>
+          <p>Поэтому проверяю решение не только по отчёту. Важно, хватит ли денег на зарплаты, инвестиции и своевременный выход из неработающей модели.</p>
           <div className="about-facts"><div><strong>Учёт</strong><span>ДДС, ОПиУ, баланс и план-факт</span></div><div><strong>Деньги</strong><span>платежи, запасы и обязательства</span></div><div><strong>Решения</strong><span>рост, пауза или выход из модели</span></div></div>
         </div>
       </section>
 
       <section className="formats-section" id="formats">
         <div className="shell">
-          <div className="section-intro section-intro-light"><p className="kicker kicker-light">Форматы работы</p><h2>Система под вашу задачу,<br />а не бизнес под шаблон</h2></div>
+          <div className="section-intro section-intro-light"><p className="kicker kicker-light">Форматы работы</p><h2>Выберите формат по состоянию учёта и команды</h2></div>
           <div className="formats-grid">
             {workFormats.map((format) => <article key={format.number}><span>{format.number}</span><h3>{format.title}</h3><p>{format.description}</p><small>{format.fit}</small><a href="https://t.me/andrey_findir" target="_blank" rel="noreferrer">Обсудить формат ↗</a></article>)}
           </div>

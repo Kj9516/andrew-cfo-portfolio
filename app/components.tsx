@@ -35,7 +35,7 @@ export function Footer() {
             <span className="brand-mark">АС</span>
             <span>Андрей Сусленков</span>
           </Link>
-          <p>Цифры, после которых понятно, что делать.</p>
+          <p>Управленческий учёт для решений по прибыли, деньгам и обязательствам.</p>
         </div>
         <div className="footer-column">
           <span>Навигация</span>
@@ -63,11 +63,11 @@ export function ContactCta({ compact = false }: { compact?: boolean }) {
     <section className={`contact-cta ${compact ? "contact-cta-compact" : ""}`} id="contact">
       <div className="shell contact-cta-grid">
         <div>
-          <p className="kicker kicker-light">Бесплатная диагностика / 20–30 минут</p>
-          <h2>Сначала разберёмся.<br />Потом решим, нужен ли вам учёт.</h2>
+          <p className="kicker kicker-light">Диагностика / 20–30 минут</p>
+          <h2>Разберём задачу и проверим, какой формат работы нужен.</h2>
         </div>
         <div className="contact-cta-copy">
-          <p>Посмотрим на текущую ситуацию, найдём главную финансовую слепую зону и определим, даст ли моя работа ощутимый эффект.</p>
+          <p>Посмотрим данные, текущие отчёты и проблему собственника. После этого станет понятно, нужен ли проект, сопровождение или отдельная настройка.</p>
           <a className="button button-light" href={telegram} target="_blank" rel="noreferrer">
             Написать в Telegram <span aria-hidden="true">↗</span>
           </a>
@@ -139,7 +139,7 @@ export function PricingCard({ plan }: { plan: PricingPlan | ProjectPricing }) {
     <article className={`pricing-card ${recommended ? "pricing-card-recommended" : ""}`}>
       <div className="pricing-card-head">
         <div>
-          <p>{recommended ? "Отправная точка" : "Формат работы"}</p>
+          <p>{recommended ? "Рекомендуемый формат" : "Формат работы"}</p>
           <h3>{plan.title}</h3>
         </div>
         <strong>{plan.price}</strong>
