@@ -74,9 +74,9 @@ export default function Home() {
         <div className="about-content">
           <p className="kicker">Обо мне / Вижу обе стороны</p>
           <h2>Смотрю на финансы глазами собственника</h2>
-          <p className="large-copy">Более семи лет занимаюсь управленческим учётом. Пять из них развивал собственный интернет-магазин с оборотом более 40 млн ₽ в год.</p>
+          <p className="large-copy">Я отвечал за финансы не только как консультант, но и как собственник: сам проходил найм, закупки, сезонность, обязательства и решения по развитию.</p>
           <p>Поэтому я знаю, как решение выглядит не только в отчёте, но и в момент, когда нужно платить зарплаты, инвестировать или вовремя отказаться от неработающей модели.</p>
-          <div className="about-facts"><div><strong>7+</strong><span>лет в финансах</span></div><div><strong>5</strong><span>лет собственник</span></div><div><strong>40+</strong><span>млн ₽ оборот своего бизнеса</span></div></div>
+          <div className="about-facts"><div><strong>Учёт</strong><span>ДДС, ОПиУ, баланс и план-факт</span></div><div><strong>Деньги</strong><span>платежи, запасы и обязательства</span></div><div><strong>Решения</strong><span>рост, пауза или выход из модели</span></div></div>
         </div>
       </section>
 
