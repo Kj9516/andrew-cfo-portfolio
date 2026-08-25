@@ -4,45 +4,45 @@ import { useState } from "react";
 import { cases } from "./data";
 
 export function CaseExplorer() {
-  const [activeId, setActiveId] = useState(cases[0].id);
-  const active = cases.find((item) => item.id === activeId) ?? cases[0];
+  const [activeSlug, setActiveSlug] = useState(cases[0].slug);
+  const active = cases.find((item) => item.slug === activeSlug) ?? cases[0];
 
   return (
     <div className="case-explorer">
       <div className="case-tabs" role="tablist" aria-label="Выберите кейс">
         {cases.map((item) => (
           <button
-            key={item.id}
-            id={`tab-${item.id}`}
+            key={item.slug}
+            id={`tab-${item.slug}`}
             role="tab"
-            aria-selected={active.id === item.id}
-            aria-controls={`panel-${item.id}`}
-            onClick={() => setActiveId(item.id)}
+            aria-selected={active.slug === item.slug}
+            aria-controls={`panel-${item.slug}`}
+            onClick={() => setActiveSlug(item.slug)}
           >
-            <span>{item.label}</span>
-            <strong>{item.company}</strong>
+            <span>{item.number} / {item.niche}</span>
+            <strong>{item.niche}</strong>
           </button>
         ))}
       </div>
       <article
         className="case-panel"
-        id={`panel-${active.id}`}
+        id={`panel-${active.slug}`}
         role="tabpanel"
-        aria-labelledby={`tab-${active.id}`}
-        key={active.id}
+        aria-labelledby={`tab-${active.slug}`}
+        key={active.slug}
       >
         <div className="case-panel-head">
           <div>
             <p>{active.scale}</p>
-            <h3>«{active.hook}»</h3>
+            <h3>«{active.cardTitle}»</h3>
           </div>
-          <strong>{active.metric}</strong>
+          <strong>{active.keyMetric}</strong>
         </div>
         <div className="case-steps">
-          <div><span>01 / До</span><p>{active.before}</p></div>
-          <div><span>02 / Обнаружили</span><p>{active.insight}</p></div>
-          <div><span>03 / Собрали</span><p>{active.solution}</p></div>
-          <div className="case-result"><span>04 / Результат</span><p>{active.result}</p></div>
+          <div><span>01 / До</span><p>{active.initialState}</p></div>
+          <div><span>02 / Обнаружили</span><p>{active.causes[0]}</p></div>
+          <div><span>03 / Собрали</span><p>{active.workDone.join(" ")}</p></div>
+          <div className="case-result"><span>04 / Результат</span><p>{active.results.join(" ")}</p></div>
         </div>
       </article>
     </div>

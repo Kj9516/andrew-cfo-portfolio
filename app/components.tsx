@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Material } from "./data";
+import type { CaseStudy, Material, PricingPlan, ProjectPricing } from "./data";
 
 const telegram = "https://t.me/andrey_findir";
 
@@ -73,6 +73,84 @@ export function ContactCta({ compact = false }: { compact?: boolean }) {
         </div>
       </div>
     </section>
+  );
+}
+
+export function PageHeader({ kicker, title, lead }: { kicker: string; title: string; lead?: string }) {
+  return (
+    <section className="page-header shell">
+      <p className="kicker">{kicker}</p>
+      <h1>{title}</h1>
+      {lead ? <p>{lead}</p> : null}
+    </section>
+  );
+}
+
+export function BackLink({ href, children = "Назад" }: { href: string; children?: React.ReactNode }) {
+  return <Link className="back-link" href={href}><span aria-hidden="true">←</span>{children}</Link>;
+}
+
+export function CaseCard({ caseItem, href }: { caseItem: CaseStudy; href?: string }) {
+  const content = (
+    <>
+      <div className="case-card-topline">
+        <span>{caseItem.number}</span>
+        <span>{caseItem.niche}</span>
+      </div>
+      <h3>{caseItem.cardTitle}</h3>
+      <p>{caseItem.lead}</p>
+      <div className="case-card-meta">
+        <span>{caseItem.scale}</span>
+        <strong>{caseItem.keyMetric}</strong>
+      </div>
+    </>
+  );
+
+  if (href) {
+    return (
+      <article className="case-card">
+        <Link href={href} aria-label={caseItem.pageTitle}>{content}</Link>
+      </article>
+    );
+  }
+
+  return <article className="case-card">{content}</article>;
+}
+
+export function CaseGrid({ items, getHref }: { items: CaseStudy[]; getHref?: (caseItem: CaseStudy) => string }) {
+  return (
+    <div className="case-grid">
+      {items.map((caseItem) => (
+        <CaseCard caseItem={caseItem} href={getHref?.(caseItem)} key={caseItem.slug} />
+      ))}
+    </div>
+  );
+}
+
+export function PricingCard({ plan }: { plan: PricingPlan | ProjectPricing }) {
+  const recommended = "recommended" in plan ? plan.recommended : false;
+  const note = "priceNote" in plan ? plan.priceNote : plan.duration;
+  const bonus = "bonus" in plan ? plan.bonus : undefined;
+
+  return (
+    <article className={`pricing-card ${recommended ? "pricing-card-recommended" : ""}`}>
+      <div className="pricing-card-head">
+        <div>
+          <p>{recommended ? "Рекомендуемый формат" : "Формат работы"}</p>
+          <h3>{plan.title}</h3>
+        </div>
+        <strong>{plan.price}</strong>
+        <span>{note}</span>
+      </div>
+      <p className="pricing-audience">{plan.audience}</p>
+      <ul>
+        {plan.services.map((service) => <li key={service}>{service}</li>)}
+      </ul>
+      {bonus ? <p className="pricing-bonus">{bonus}</p> : null}
+      <a className="button button-primary" href={telegram} target="_blank" rel="noreferrer">
+        {plan.cta} <span aria-hidden="true">↗</span>
+      </a>
+    </article>
   );
 }
 
