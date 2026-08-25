@@ -98,11 +98,12 @@ export function CaseCard({ caseItem, href }: { caseItem: CaseStudy; href?: strin
         <span>{caseItem.niche}</span>
       </div>
       <h3>{caseItem.cardTitle}</h3>
-      <p>{caseItem.lead}</p>
+      <p>{caseItem.shortProblem}</p>
       <div className="case-card-meta">
         <span>{caseItem.scale}</span>
         <strong>{caseItem.keyMetric}</strong>
       </div>
+      <span className="case-card-action">Читать кейс <span aria-hidden="true">→</span></span>
     </>
   );
 

@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CaseExplorer } from "./case-explorer";
-import { ContactCta, Footer, Header } from "./components";
-import { proofPoints, workFormats } from "./data";
+import { CaseGrid, ContactCta, Footer, Header } from "./components";
+import { cases, proofPoints, workFormats } from "./data";
+
+const orderedCases = [...cases].sort((a, b) => a.order - b.order);
 
 export default function Home() {
   return (
@@ -44,7 +45,10 @@ export default function Home() {
           <h2>Что меняется, когда бизнес начинает видеть себя в цифрах</h2>
           <p>Каждый кейс — не перечень таблиц, а конкретный переход от финансовой слепоты к управляемому решению.</p>
         </div>
-        <CaseExplorer />
+        <CaseGrid items={orderedCases} getHref={(caseItem) => `/cases/${caseItem.slug}`} />
+        <div className="section-link-row">
+          <Link className="button button-primary" href="/cases">Смотреть все кейсы <span aria-hidden="true">→</span></Link>
+        </div>
       </section>
 
       <section className="materials-teaser">
