@@ -96,7 +96,7 @@ export const cases: CaseStudy[] = [
     },
   },
   {
-    slug: "shop",
+    slug: "internet-shop",
     order: 2,
     number: "02",
     niche: "Интернет-магазин",
