@@ -13,6 +13,7 @@ export function Header({ dark = false }: { dark?: boolean }) {
         </Link>
         <nav className="nav" aria-label="Основная навигация">
           <Link href="/#cases">Кейсы</Link>
+          <Link href="/pricing">Тарифы</Link>
           <Link href="/materials">Материалы</Link>
           <Link href="/#about">Обо мне</Link>
           <Link href="/#formats">Форматы</Link>
@@ -39,6 +40,7 @@ export function Footer() {
         <div className="footer-column">
           <span>Навигация</span>
           <Link href="/#cases">Кейсы</Link>
+          <Link href="/pricing">Тарифы</Link>
           <Link href="/materials">Бесплатные материалы</Link>
           <Link href="/#formats">Форматы работы</Link>
         </div>
@@ -137,7 +139,7 @@ export function PricingCard({ plan }: { plan: PricingPlan | ProjectPricing }) {
     <article className={`pricing-card ${recommended ? "pricing-card-recommended" : ""}`}>
       <div className="pricing-card-head">
         <div>
-          <p>{recommended ? "Рекомендуемый формат" : "Формат работы"}</p>
+          <p>{recommended ? "Отправная точка" : "Формат работы"}</p>
           <h3>{plan.title}</h3>
         </div>
         <strong>{plan.price}</strong>

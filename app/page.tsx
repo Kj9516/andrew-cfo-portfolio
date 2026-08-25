@@ -90,6 +90,9 @@ export default function Home() {
           <div className="formats-grid">
             {workFormats.map((format) => <article key={format.number}><span>{format.number}</span><h3>{format.title}</h3><p>{format.description}</p><small>{format.fit}</small><a href="https://t.me/andrey_findir" target="_blank" rel="noreferrer">Обсудить формат ↗</a></article>)}
           </div>
+          <div className="formats-actions">
+            <Link className="button button-light" href="/pricing">Смотреть тарифы <span aria-hidden="true">→</span></Link>
+          </div>
         </div>
       </section>
 
