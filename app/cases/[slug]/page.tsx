@@ -6,9 +6,9 @@ import { BackLink, ContactCta, Footer, Header } from "../../components";
 import { cases } from "../../data";
 
 type CasePageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 const orderedCases = [...cases].sort((a, b) => a.order - b.order);
@@ -17,8 +17,9 @@ export function generateStaticParams() {
   return cases.map((caseItem) => ({ slug: caseItem.slug }));
 }
 
-export function generateMetadata({ params }: CasePageProps): Metadata {
-  const caseItem = cases.find((item) => item.slug === params.slug);
+export async function generateMetadata({ params }: CasePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const caseItem = cases.find((item) => item.slug === slug);
 
   if (!caseItem) {
     return {};
@@ -37,8 +38,9 @@ export function generateMetadata({ params }: CasePageProps): Metadata {
   };
 }
 
-export default function CasePage({ params }: CasePageProps) {
-  const caseItem = orderedCases.find((item) => item.slug === params.slug);
+export default async function CasePage({ params }: CasePageProps) {
+  const { slug } = await params;
+  const caseItem = orderedCases.find((item) => item.slug === slug);
 
   if (!caseItem) {
     notFound();

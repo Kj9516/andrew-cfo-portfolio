@@ -2,6 +2,13 @@ import Link from "next/link";
 import type { CaseStudy, Material, PricingPlan, ProjectPricing } from "./data";
 
 const telegram = "https://t.me/andrey_findir";
+const mainNavLinks = [
+  { href: "/#cases", label: "Кейсы" },
+  { href: "/pricing", label: "Тарифы" },
+  { href: "/materials", label: "Материалы" },
+  { href: "/#about", label: "Обо мне" },
+  { href: "/#formats", label: "Форматы" },
+];
 
 export function Header({ dark = false }: { dark?: boolean }) {
   return (
@@ -12,15 +19,18 @@ export function Header({ dark = false }: { dark?: boolean }) {
           <span className="brand-name">Андрей Сусленков</span>
         </Link>
         <nav className="nav" aria-label="Основная навигация">
-          <Link href="/#cases">Кейсы</Link>
-          <Link href="/pricing">Тарифы</Link>
-          <Link href="/materials">Материалы</Link>
-          <Link href="/#about">Обо мне</Link>
-          <Link href="/#formats">Форматы</Link>
+          {mainNavLinks.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
         </nav>
-        <a className="header-cta" href={telegram} target="_blank" rel="noreferrer">
+        <a className="header-cta" href={telegram} target="_blank" rel="noreferrer" aria-label="Обсудить бизнес в Telegram">
           Обсудить бизнес <span aria-hidden="true">↗</span>
         </a>
+        <details className="mobile-nav">
+          <summary aria-label="Открыть меню"><span aria-hidden="true" /></summary>
+          <nav aria-label="Мобильная навигация">
+            {mainNavLinks.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
+            <a href={telegram} target="_blank" rel="noreferrer">Обсудить бизнес <span aria-hidden="true">↗</span></a>
+          </nav>
+        </details>
       </div>
     </header>
   );
@@ -46,7 +56,7 @@ export function Footer() {
         </div>
         <div className="footer-column">
           <span>Контакты</span>
-          <a href={telegram} target="_blank" rel="noreferrer">@andrey_findir ↗</a>
+          <a href={telegram} target="_blank" rel="noreferrer" aria-label="Написать Андрею Сусленкову в Telegram">@andrey_findir ↗</a>
           <a href="mailto:suslenkov.andrew@mail.ru">suslenkov.andrew@mail.ru</a>
         </div>
       </div>
@@ -68,7 +78,7 @@ export function ContactCta({ compact = false }: { compact?: boolean }) {
         </div>
         <div className="contact-cta-copy">
           <p>Посмотрим данные, текущие отчёты и проблему собственника. После этого станет понятно, нужен ли проект, сопровождение или отдельная настройка.</p>
-          <a className="button button-light" href={telegram} target="_blank" rel="noreferrer">
+          <a className="button button-light" href={telegram} target="_blank" rel="noreferrer" aria-label="Написать в Telegram для диагностики">
             Написать в Telegram <span aria-hidden="true">↗</span>
           </a>
           <a className="plain-contact" href="mailto:suslenkov.andrew@mail.ru">suslenkov.andrew@mail.ru</a>
@@ -150,7 +160,7 @@ export function PricingCard({ plan }: { plan: PricingPlan | ProjectPricing }) {
         {plan.services.map((service) => <li key={service}>{service}</li>)}
       </ul>
       {bonus ? <p className="pricing-bonus">{bonus}</p> : null}
-      <a className="button button-primary" href={telegram} target="_blank" rel="noreferrer">
+      <a className="button button-primary" href={telegram} target="_blank" rel="noreferrer" aria-label={`${plan.cta} в Telegram`}>
         {plan.cta} <span aria-hidden="true">↗</span>
       </a>
     </article>
@@ -167,7 +177,7 @@ export function MaterialCard({ material }: { material: Material }) {
         {material.features.map((feature) => <span key={feature}>{feature}</span>)}
       </div>
       <p className="material-audience"><strong>Подойдёт:</strong> {material.audience}</p>
-      <a className="button button-primary" href={material.href} target="_blank" rel="noreferrer">
+      <a className="button button-primary" href={material.href} target="_blank" rel="noreferrer" aria-label={`Открыть таблицу: ${material.title}`}>
         Открыть таблицу <span aria-hidden="true">↗</span>
       </a>
     </article>

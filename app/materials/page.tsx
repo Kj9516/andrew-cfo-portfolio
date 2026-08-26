@@ -54,7 +54,7 @@ export default function MaterialsPage() {
       <section className="faq-section shell">
         <div className="section-intro"><p className="kicker">FAQ / Коротко о важном</p><h2>Вопросы по материалам</h2></div>
         <div className="faq-list">
-          {faq.map((item, index) => <details key={item.question} open={index === 0}><summary>{item.question}<span>+</span></summary><p>{item.answer}</p></details>)}
+          {faq.map((item, index) => <details key={item.question} open={index === 0}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}
         </div>
       </section>
 

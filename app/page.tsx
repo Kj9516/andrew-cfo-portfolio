@@ -16,7 +16,7 @@ export default function Home() {
             <h1>Цифры, после которых <em>понятно, что делать.</em></h1>
             <p className="hero-lead">Строю управленческий учёт, который показывает прибыль, обязательства и движение денег. Собственник видит данные до решения, а не после ошибки.</p>
             <div className="hero-actions">
-              <a className="button button-primary" href="https://t.me/andrey_findir" target="_blank" rel="noreferrer">Обсудить бизнес <span aria-hidden="true">↗</span></a>
+              <a className="button button-primary" href="https://t.me/andrey_findir" target="_blank" rel="noreferrer" aria-label="Обсудить бизнес в Telegram">Обсудить бизнес <span aria-hidden="true">↗</span></a>
               <Link className="button button-ghost" href="/materials">Забрать таблицы</Link>
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function Home() {
         <div className="shell">
           <div className="section-intro section-intro-light"><p className="kicker kicker-light">Форматы работы</p><h2>Выберите формат по состоянию учёта и команды</h2></div>
           <div className="formats-grid">
-            {workFormats.map((format) => <article key={format.number}><span>{format.number}</span><h3>{format.title}</h3><p>{format.description}</p><small>{format.fit}</small><a href="https://t.me/andrey_findir" target="_blank" rel="noreferrer">Обсудить формат ↗</a></article>)}
+            {workFormats.map((format) => <article key={format.number}><span>{format.number}</span><h3>{format.title}</h3><p>{format.description}</p><small>{format.fit}</small><a href="https://t.me/andrey_findir" target="_blank" rel="noreferrer" aria-label={`Обсудить формат в Telegram: ${format.title}`}>Обсудить формат ↗</a></article>)}
           </div>
           <div className="formats-actions">
             <Link className="button button-light" href="/pricing">Смотреть тарифы <span aria-hidden="true">→</span></Link>
