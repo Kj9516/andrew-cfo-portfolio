@@ -102,20 +102,87 @@ export function BackLink({ href, children = "Назад" }: { href: string; chil
   return <Link className="back-link" href={href}><span aria-hidden="true">←</span>{children}</Link>;
 }
 
+export function CaseArtifact({ caseItem, compact = false }: { caseItem: CaseStudy; compact?: boolean }) {
+  const rows = {
+    "deal-profit": [
+      ["Сделка A", "Маржа", "+18%"],
+      ["Сделка B", "Деньги", "14 дн."],
+      ["Расходы", "Резерв", "−"],
+    ],
+    "exit-model": [
+      ["Сценарий 1", "Продолжать", "риск"],
+      ["Сценарий 2", "Выход", "0 ₽"],
+      ["Активы", "Реализация", "план"],
+    ],
+    "cash-calendar": [
+      ["12.08", "Зарплата", "план"],
+      ["18.08", "Аренда", "резерв"],
+      ["30 дней", "Разрыв", "0"],
+    ],
+  }[caseItem.visualTheme];
+
+  return (
+    <div className={`case-artifact case-artifact-${caseItem.visualTheme} ${compact ? "case-artifact-compact" : ""}`} aria-hidden="true">
+      <div className="case-artifact-toolbar">
+        <i /><i /><i />
+        <span>Публичный макет финансового артефакта</span>
+      </div>
+      <div className="case-artifact-kpis">
+        <div>
+          <span>{caseItem.niche}</span>
+          <strong>{caseItem.keyMetric}</strong>
+        </div>
+        <div>
+          <span>Контур</span>
+          <strong>{caseItem.role}</strong>
+        </div>
+      </div>
+      <div className="case-artifact-chart">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="case-artifact-rows">
+        {rows.map(([left, middle, right]) => (
+          <div className="case-artifact-row" key={`${left}-${middle}`}>
+            <span>{left}</span>
+            <span>{middle}</span>
+            <strong>{right}</strong>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function CaseCard({ caseItem, href }: { caseItem: CaseStudy; href?: string }) {
   const content = (
     <>
-      <div className="case-card-topline">
-        <span>{caseItem.number}</span>
-        <span>{caseItem.niche}</span>
+      <CaseArtifact caseItem={caseItem} compact />
+      <div className="case-card-body">
+        <div className="case-card-topline">
+          <span>{caseItem.number}</span>
+          <span>{caseItem.niche}</span>
+        </div>
+        <h3>{caseItem.cardTitle}</h3>
+        <p>{caseItem.shortProblem}</p>
+        <dl className="case-card-facts" aria-label="Кратко о кейсе">
+          <div>
+            <dt>Масштаб</dt>
+            <dd>{caseItem.scale}</dd>
+          </div>
+          <div>
+            <dt>Итог</dt>
+            <dd>{caseItem.keyMetric}</dd>
+          </div>
+        </dl>
+        <div className="case-card-change">
+          <span>Что изменилось</span>
+          <p>{caseItem.whatChanged}</p>
+        </div>
+        <span className="case-card-action">Читать кейс <span aria-hidden="true">→</span></span>
       </div>
-      <h3>{caseItem.cardTitle}</h3>
-      <p>{caseItem.shortProblem}</p>
-      <div className="case-card-meta">
-        <span>{caseItem.scale}</span>
-        <strong>{caseItem.keyMetric}</strong>
-      </div>
-      <span className="case-card-action">Читать кейс <span aria-hidden="true">→</span></span>
     </>
   );
 

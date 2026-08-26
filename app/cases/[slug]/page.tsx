@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BackLink, ContactCta, Footer, Header } from "../../components";
+import { BackLink, CaseArtifact, ContactCta, Footer, Header } from "../../components";
 import { cases } from "../../data";
 
 type CasePageProps = {
@@ -58,32 +57,111 @@ export default async function CasePage({ params }: CasePageProps) {
             <p className="kicker">{caseItem.niche} / {caseItem.scale}</p>
             <h1>{caseItem.pageTitle}</h1>
             <p>{caseItem.lead}</p>
+            <div className="case-hero-actions">
+              <a className="button button-primary" href="https://t.me/andrey_findir" target="_blank" rel="noreferrer" aria-label={`${caseItem.ctaText} в Telegram`}>
+                {caseItem.ctaText} <span aria-hidden="true">↗</span>
+              </a>
+              <Link className="button button-ghost-light" href="/pricing">Форматы работы</Link>
+            </div>
           </div>
-          <aside className="case-detail-metric" aria-label="Ключевая метрика">
-            <span>Ключевой результат</span>
-            <strong>{caseItem.keyMetric}</strong>
-            <p>{caseItem.results[0]}</p>
-          </aside>
+          <CaseArtifact caseItem={caseItem} />
         </header>
 
-        {caseItem.image ? (
-          <figure className="case-detail-image">
-            <Image src={caseItem.image.src} alt={caseItem.image.alt} fill sizes="(max-width: 900px) 100vw, 1180px" />
-            <figcaption>{caseItem.image.caption}</figcaption>
-          </figure>
-        ) : null}
-
-        <section className="case-detail-summary" aria-label="Краткий вывод">
-          <span>Краткий вывод</span>
-          <p>{caseItem.shortProblem}</p>
+        <section className="case-summary-panel" aria-label="Кратко о проекте">
+          {caseItem.summaryFacts.map((fact) => (
+            <div key={fact.label}>
+              <span>{fact.label}</span>
+              <strong>{fact.value}</strong>
+            </div>
+          ))}
         </section>
 
-        <div className="case-detail-grid">
-          <section>
-            <span>Исходная ситуация</span>
+        <section className="case-story-block case-story-lead" aria-labelledby="case-context">
+          <div>
+            <span>Контекст</span>
+            <h2 id="case-context">Почему задача была важна</h2>
+          </div>
+          <div>
             <p>{caseItem.context}</p>
             <p>{caseItem.initialState}</p>
-          </section>
+            <p className="case-stakes"><strong>Что было на кону:</strong> {caseItem.stakes}</p>
+          </div>
+        </section>
+
+        <section className="case-story-block" aria-labelledby="case-diagnostics">
+          <div>
+            <span>Диагностика</span>
+            <h2 id="case-diagnostics">Что показали данные</h2>
+          </div>
+          <div className="case-diagnostic-grid">
+            {caseItem.diagnostics.map((item) => (
+              <article key={item.label}>
+                <span>{item.label}</span>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="case-story-block" aria-labelledby="case-process">
+          <div>
+            <span>Работа</span>
+            <h2 id="case-process">Как Андрей вмешался в финансовый контур</h2>
+          </div>
+          <ol className="case-process-list">
+            {caseItem.process.map((item, index) => (
+              <li key={item.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <strong>{item.title}</strong>
+                  <p>{item.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="case-before-after" aria-labelledby="case-results">
+          <div className="case-results-head">
+            <p className="kicker">Итог / До и после</p>
+            <h2 id="case-results">Что изменилось для собственника</h2>
+          </div>
+          <div className="case-outcome">
+            <span>Ключевой результат</span>
+            <strong>{caseItem.keyMetric}</strong>
+            <p>{caseItem.outcomeLabel}</p>
+          </div>
+          <div className="case-before-after-grid">
+            {caseItem.beforeAfter.map((item) => (
+              <article key={item.before}>
+                <div>
+                  <span>Было</span>
+                  <p>{item.before}</p>
+                </div>
+                <div>
+                  <span>Стало</span>
+                  <p>{item.after}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <ul className="case-results-list">
+            {caseItem.results.map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        </section>
+
+        <section className="case-proof-cta" aria-label="Доверие и следующий шаг">
+          <div>
+            <span>Доверие</span>
+            <p>{caseItem.proofNote}</p>
+            <p>Если в бизнесе похожая ситуация, диагностика начинается с текущих отчётов, платежей и решения, которое собственнику нужно принять.</p>
+          </div>
+          <a className="button button-light" href="https://t.me/andrey_findir" target="_blank" rel="noreferrer" aria-label={`${caseItem.ctaText} в Telegram`}>
+            {caseItem.ctaText} <span aria-hidden="true">↗</span>
+          </a>
+        </section>
+
+        <section className="case-detail-archive" aria-label="Подробности исходной работы">
           <section>
             <span>Найденные причины</span>
             <ul>
@@ -96,13 +174,7 @@ export default async function CasePage({ params }: CasePageProps) {
               {caseItem.workDone.map((item) => <li key={item}>{item}</li>)}
             </ul>
           </section>
-          <section className="case-detail-results">
-            <span>Результаты</span>
-            <ul>
-              {caseItem.results.map((item) => <li key={item}>{item}</li>)}
-            </ul>
-          </section>
-        </div>
+        </section>
 
         <nav className="case-detail-nav" aria-label="Другие кейсы">
           <div>

@@ -23,17 +23,25 @@ export default function CasesPage() {
       <Header />
       <PageHeader
         kicker="Кейсы"
-        title="Кейсы по управленческому учёту и деньгам"
-        lead="Три примера: автосалон, интернет-магазин и студия детейлинга. В каждом кейсе есть исходная проблема, работа с данными и результат."
+        title="Истории, где цифры меняли решение собственника"
+        lead="Три публично безопасных кейса без клиентских названий и закрытых данных: автосалон, интернет-магазин и студия детейлинга."
       />
       <section className="cases-catalog shell" aria-label="Список кейсов">
+        <div className="cases-catalog-intro">
+          <p>Каждый кейс показывает контекст, ставку для бизнеса, найденную причину и результат. Визуалы на карточках — дизайнерские макеты финансовых артефактов, а не клиентские скриншоты.</p>
+          <div aria-label="Подход к кейсам">
+            <span>без логотипов</span>
+            <span>без конфиденциальных данных</span>
+            <span>только проверяемые факты</span>
+          </div>
+        </div>
         <div className="catalog-heading">
-          <span>Кейс</span>
-          <span>{orderedCases.length} материала</span>
+          <span>Разборы</span>
+          <span>{orderedCases.length} кейса</span>
         </div>
         <CaseGrid items={orderedCases} getHref={(caseItem) => `/cases/${caseItem.slug}`} />
         <div className="catalog-actions">
-          <Link className="button button-ghost-light" href="/pricing">Смотреть тарифы</Link>
+          <Link className="button button-ghost-light" href="/pricing">Смотреть форматы работы</Link>
         </div>
       </section>
       <ContactCta compact />
