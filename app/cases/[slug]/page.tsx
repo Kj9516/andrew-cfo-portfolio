@@ -207,6 +207,48 @@ export default async function CasePage({ params }: CasePageProps) {
           </section>
         ) : null}
 
+        {caseItem.capitalEfficiency ? (
+          <section className="case-capital-efficiency" aria-labelledby="case-capital-efficiency">
+            <div className="case-capital-copy">
+              <p className="kicker">Расчёт / оборачиваемость капитала</p>
+              <h2 id="case-capital-efficiency">{caseItem.capitalEfficiency.title}</h2>
+              <p>{caseItem.capitalEfficiency.lead}</p>
+            </div>
+            <div className="case-capital-table-wrap">
+              <table className="case-capital-table">
+                <caption>Скорость оборота товара и капитала</caption>
+                <thead>
+                  <tr><th>Показатель</th><th>Расчёт</th><th>Значение</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Товар на складе</td>
+                    <td>От получения до продажи</td>
+                    <td>{caseItem.capitalEfficiency.warehouseDays.toLocaleString("ru-RU")} дня</td>
+                  </tr>
+                  <tr>
+                    <td>Полный цикл капитала</td>
+                    <td>Предоплата → производство → доставка → продажа → выплата</td>
+                    <td>{caseItem.capitalEfficiency.capitalCycleDays.toLocaleString("ru-RU")} дня</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="case-capital-formula" aria-label="Расчёт доходности вложенного капитала">
+              <div><span>Вложенный капитал</span><strong>{caseItem.capitalEfficiency.investedCapital}</strong></div>
+              <i aria-hidden="true">→</i>
+              <div><span>Чистая прибыль в месяц</span><strong>{caseItem.capitalEfficiency.monthlyProfit}</strong></div>
+              <i aria-hidden="true">=</i>
+              <div className="case-capital-formula-result"><span>Доходность</span><strong>{caseItem.capitalEfficiency.monthlyReturn} в месяц</strong><small>{caseItem.capitalEfficiency.annualReturn} в год без реинвестирования</small></div>
+            </div>
+            <div className="case-capital-decision">
+              <div><span>Привлечено</span><strong>{caseItem.capitalEfficiency.loanAmount}</strong></div>
+              <div><span>Стоимость денег</span><strong>{caseItem.capitalEfficiency.loanRate}</strong></div>
+              <p>{caseItem.capitalEfficiency.conclusion}</p>
+            </div>
+          </section>
+        ) : null}
+
         <section className="case-before-after" aria-labelledby="case-results">
           <div className="case-results-head">
             <p className="kicker">Итог / До и после</p>

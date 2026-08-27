@@ -112,6 +112,22 @@ export function CaseArtifact({ caseItem, compact = false }: { caseItem: CaseStud
     <figure className={`case-photo ${compact ? "case-photo-compact" : ""}`}>
       {caseItem.image ? (
         <Image src={caseItem.image.src} alt={caseItem.image.alt} fill sizes={compact ? "(max-width: 700px) 100vw, 390px" : "(max-width: 980px) 100vw, 440px"} />
+      ) : caseItem.capitalEfficiency ? (
+        <div className="case-capital-cover" aria-label="Расчёт оборачиваемости и доходности капитала">
+          <span>Расчёт капитала</span>
+          <div>
+            <small>Цикл</small>
+            <strong>{caseItem.capitalEfficiency.capitalCycleDays.toLocaleString("ru-RU")} дня</strong>
+          </div>
+          <div>
+            <small>Доходность</small>
+            <strong>{caseItem.capitalEfficiency.monthlyReturn} / мес.</strong>
+          </div>
+          <div>
+            <small>Оборот</small>
+            <strong>300 → 370 млн ₽</strong>
+          </div>
+        </div>
       ) : (
         <div className="case-photo-placeholder" aria-label={`Нужно добавить фотографию: ${caseItem.niche}`}>
           <span>{caseItem.niche}</span>
