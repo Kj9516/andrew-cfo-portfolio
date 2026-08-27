@@ -143,7 +143,7 @@ export default async function CasePage({ params }: CasePageProps) {
               <h2 id="case-deal-growth">{caseItem.dealMix.title}</h2>
               <p>{caseItem.dealMix.lead}</p>
             </div>
-            <div className="case-deal-charts" aria-label="Изменение доли зелёных сделок">
+            <div className="case-deal-charts" aria-label="Изменение доли сделок по выкупным автомобилям">
               {caseItem.dealMix.years.map((year) => {
                 const secondEdge = year.targetShare + year.secondShare;
                 return (
@@ -152,12 +152,12 @@ export default async function CasePage({ params }: CasePageProps) {
                       className="case-deal-pie"
                       style={{ background: `conic-gradient(var(--green) 0 ${year.targetShare}%, #8fb8dd ${year.targetShare}% ${secondEdge}%, #f6c95d ${secondEdge}% 100%)` }}
                       role="img"
-                      aria-label={`${year.year}: доля зелёных сделок ${year.targetShare.toLocaleString("ru-RU")}%`}
+                      aria-label={`${year.year}: доля сделок по выкупным автомобилям ${year.targetShare.toLocaleString("ru-RU")}%`}
                     >
                       <span>{year.targetShare.toLocaleString("ru-RU")}%</span>
                     </div>
                     <strong>{year.year}</strong>
-                    <p>доля зелёных сделок</p>
+                    <p>доля сделок по выкупным автомобилям</p>
                   </article>
                 );
               })}
