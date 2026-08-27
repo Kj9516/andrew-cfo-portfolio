@@ -38,7 +38,7 @@ export default function PricingPage() {
         <div className="pricing-grid">
           {pricingPlans.map((plan) => <PricingCard plan={plan} key={plan.title} />)}
         </div>
-        <p className="pricing-note">Окончательная стоимость зависит от сложности и объёма задач.</p>
+        <p className="pricing-note">Итоговая стоимость зависит от количества юридических лиц, направлений работы, источников данных и ритма встреч.</p>
       </section>
 
       <section className="project-pricing-section shell" aria-label="Проектная работа">
