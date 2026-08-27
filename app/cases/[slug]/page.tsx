@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BackLink, CaseArtifact, ContactCta, Footer, Header } from "../../components";
@@ -108,18 +109,66 @@ export default async function CasePage({ params }: CasePageProps) {
             <span>Работа</span>
             <h2 id="case-process">Что сделали</h2>
           </div>
-          <ol className="case-process-list">
-            {caseItem.process.map((item, index) => (
-              <li key={item.title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <div>
-                  <strong>{item.title}</strong>
-                  <p>{item.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <div className="case-process-content">
+            <ol className="case-process-list">
+              {caseItem.process.map((item, index) => (
+                <li key={item.title}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <strong>{item.title}</strong>
+                    <p>{item.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            {caseItem.implementationImage ? (
+              <figure className="case-implementation-image">
+                <Image
+                  src={caseItem.implementationImage.src}
+                  alt={caseItem.implementationImage.alt}
+                  width={1865}
+                  height={923}
+                  sizes="(max-width: 980px) 100vw, 720px"
+                />
+                <figcaption>{caseItem.implementationImage.caption}</figcaption>
+              </figure>
+            ) : null}
+          </div>
         </section>
+
+        {caseItem.dealMix ? (
+          <section className="case-deal-growth" aria-labelledby="case-deal-growth">
+            <div className="case-deal-growth-copy">
+              <p className="kicker">Регулярная работа / одно решение</p>
+              <h2 id="case-deal-growth">{caseItem.dealMix.title}</h2>
+              <p>{caseItem.dealMix.lead}</p>
+            </div>
+            <div className="case-deal-charts" aria-label="Изменение доли зелёных сделок">
+              {caseItem.dealMix.years.map((year) => {
+                const secondEdge = year.targetShare + year.secondShare;
+                return (
+                  <article key={year.year}>
+                    <div
+                      className="case-deal-pie"
+                      style={{ background: `conic-gradient(var(--green) 0 ${year.targetShare}%, #8fb8dd ${year.targetShare}% ${secondEdge}%, #f6c95d ${secondEdge}% 100%)` }}
+                      role="img"
+                      aria-label={`${year.year}: доля зелёных сделок ${year.targetShare.toLocaleString("ru-RU")}%`}
+                    >
+                      <span>{year.targetShare.toLocaleString("ru-RU")}%</span>
+                    </div>
+                    <strong>{year.year}</strong>
+                    <p>доля зелёных сделок</p>
+                  </article>
+                );
+              })}
+            </div>
+            <div className="case-deal-result">
+              <span>Результат решения</span>
+              <strong>{caseItem.dealMix.result}</strong>
+              <p>{caseItem.dealMix.forecast}</p>
+            </div>
+          </section>
+        ) : null}
 
         <section className="case-before-after" aria-labelledby="case-results">
           <div className="case-results-head">
