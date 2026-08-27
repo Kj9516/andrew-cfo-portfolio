@@ -43,7 +43,6 @@ export default function Home() {
         <div className="section-intro">
           <p className="kicker">Кейсы / Отчёты и решения</p>
           <h2>Что меняется, когда решения опираются на цифры</h2>
-          <p>В каждом кейсе показаны исходная проблема, найденная причина, работа с учётом и итог для собственника.</p>
         </div>
         <CaseGrid items={orderedCases} getHref={(caseItem) => `/cases/${caseItem.slug}`} />
         <div className="section-link-row">

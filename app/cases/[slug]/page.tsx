@@ -106,7 +106,7 @@ export default async function CasePage({ params }: CasePageProps) {
         <section className="case-story-block" aria-labelledby="case-process">
           <div>
             <span>Работа</span>
-            <h2 id="case-process">Как Андрей вмешался в финансовый контур</h2>
+            <h2 id="case-process">Что сделали</h2>
           </div>
           <ol className="case-process-list">
             {caseItem.process.map((item, index) => (

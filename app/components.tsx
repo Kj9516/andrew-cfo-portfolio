@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { CaseStudy, Material, PricingPlan, ProjectPricing } from "./data";
 
@@ -103,56 +104,18 @@ export function BackLink({ href, children = "Назад" }: { href: string; chil
 }
 
 export function CaseArtifact({ caseItem, compact = false }: { caseItem: CaseStudy; compact?: boolean }) {
-  const rows = {
-    "deal-profit": [
-      ["Сделка A", "Маржа", "+18%"],
-      ["Сделка B", "Деньги", "14 дн."],
-      ["Расходы", "Резерв", "−"],
-    ],
-    "exit-model": [
-      ["Сценарий 1", "Продолжать", "риск"],
-      ["Сценарий 2", "Выход", "0 ₽"],
-      ["Активы", "Реализация", "план"],
-    ],
-    "cash-calendar": [
-      ["12.08", "Зарплата", "план"],
-      ["18.08", "Аренда", "резерв"],
-      ["30 дней", "Разрыв", "0"],
-    ],
-  }[caseItem.visualTheme];
-
   return (
-    <div className={`case-artifact case-artifact-${caseItem.visualTheme} ${compact ? "case-artifact-compact" : ""}`} aria-hidden="true">
-      <div className="case-artifact-toolbar">
-        <i /><i /><i />
-        <span>Публичный макет финансового артефакта</span>
-      </div>
-      <div className="case-artifact-kpis">
-        <div>
+    <figure className={`case-photo ${compact ? "case-photo-compact" : ""}`}>
+      {caseItem.image ? (
+        <Image src={caseItem.image.src} alt={caseItem.image.alt} fill sizes={compact ? "(max-width: 700px) 100vw, 390px" : "(max-width: 980px) 100vw, 440px"} />
+      ) : (
+        <div className="case-photo-placeholder" aria-label={`Нужно добавить фотографию: ${caseItem.niche}`}>
           <span>{caseItem.niche}</span>
-          <strong>{caseItem.keyMetric}</strong>
+          <strong>Фотография бизнеса</strong>
         </div>
-        <div>
-          <span>Контур</span>
-          <strong>{caseItem.role}</strong>
-        </div>
-      </div>
-      <div className="case-artifact-chart">
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
-      <div className="case-artifact-rows">
-        {rows.map(([left, middle, right]) => (
-          <div className="case-artifact-row" key={`${left}-${middle}`}>
-            <span>{left}</span>
-            <span>{middle}</span>
-            <strong>{right}</strong>
-          </div>
-        ))}
-      </div>
-    </div>
+      )}
+      {!compact && caseItem.image?.caption ? <figcaption>{caseItem.image.caption}</figcaption> : null}
+    </figure>
   );
 }
 
