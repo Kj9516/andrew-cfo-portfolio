@@ -87,7 +87,7 @@ export default function Home() {
         <div className="shell">
           <div className="section-intro section-intro-light"><p className="kicker kicker-light">Форматы работы</p><h2>Выберите формат по состоянию учёта и команды</h2></div>
           <div className="formats-grid">
-            {workFormats.map((format) => <article key={format.number}><span>{format.number}</span><h3>{format.title}</h3><p>{format.description}</p><small>{format.fit}</small><a href="https://t.me/andrey_findir" target="_blank" rel="noreferrer" aria-label={`Обсудить формат в Telegram: ${format.title}`}>Обсудить формат ↗</a></article>)}
+            {workFormats.map((format) => <article key={format.number}><span>{format.number}</span><h3>{format.title}</h3><p>{format.description}</p><small>{format.fit}</small><Link href={`/formats/${format.slug}`}>Подробнее <span aria-hidden="true">→</span></Link></article>)}
           </div>
           <div className="formats-actions">
             <Link className="button button-light" href="/pricing">Смотреть тарифы <span aria-hidden="true">→</span></Link>
