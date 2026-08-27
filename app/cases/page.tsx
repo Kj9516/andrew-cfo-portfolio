@@ -19,22 +19,13 @@ export const metadata: Metadata = {
 
 export default function CasesPage() {
   return (
-    <main>
+    <main className="cases-page">
       <Header />
       <PageHeader
         kicker="Кейсы"
         title="Истории, где цифры меняли решение собственника"
-        lead="Три публично безопасных кейса без клиентских названий и закрытых данных: автосалон, интернет-магазин и студия детейлинга."
       />
       <section className="cases-catalog shell" aria-label="Список кейсов">
-        <div className="cases-catalog-intro">
-          <p>Здесь собраны задачи, с которыми ко мне пришли собственники, и результаты работы в цифрах.</p>
-          <div aria-label="Подход к кейсам">
-            <span>без логотипов</span>
-            <span>без конфиденциальных данных</span>
-            <span>только проверяемые факты</span>
-          </div>
-        </div>
         <div className="catalog-heading">
           <span>Разборы</span>
           <span>{orderedCases.length} кейса</span>
