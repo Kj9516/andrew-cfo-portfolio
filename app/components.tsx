@@ -11,12 +11,16 @@ const mainNavLinks = [
   { href: "/#formats", label: "Форматы" },
 ];
 
+function BrandAvatar() {
+  return <Image className="brand-avatar" src="/images/andrey-header-avatar.webp" alt="" width={40} height={40} priority />;
+}
+
 export function Header({ dark = false }: { dark?: boolean }) {
   return (
     <header className={`site-header ${dark ? "site-header-dark" : ""}`}>
       <div className="shell header-inner">
         <Link className="brand" href="/" aria-label="Андрей Сусленков — на главную">
-          <span className="brand-mark">АС</span>
+          <BrandAvatar />
           <span className="brand-name">Андрей Сусленков</span>
         </Link>
         <nav className="nav" aria-label="Основная навигация">
@@ -43,7 +47,7 @@ export function Footer() {
       <div className="shell footer-grid">
         <div>
           <Link className="brand footer-brand" href="/">
-            <span className="brand-mark">АС</span>
+            <BrandAvatar />
             <span>Андрей Сусленков</span>
           </Link>
           <p>Управленческий учёт для решений по прибыли, деньгам и обязательствам.</p>
