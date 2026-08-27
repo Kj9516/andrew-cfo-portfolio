@@ -57,6 +57,14 @@ export default async function FormatPage({ params }: FormatPageProps) {
           </div>
         </header>
 
+        {format.positioning ? (
+          <section className="format-partner" aria-labelledby="format-partner-title">
+            <p className="kicker kicker-light">Финансовый партнёр собственника</p>
+            <h2 id="format-partner-title">Работаем над бизнесом вместе</h2>
+            <p>{format.positioning}</p>
+          </section>
+        ) : null}
+
         <section className="format-purpose" aria-labelledby="format-purpose-title">
           <div>
             <span>Что это за формат</span>
@@ -64,6 +72,24 @@ export default async function FormatPage({ params }: FormatPageProps) {
           </div>
           <p>{format.purpose}</p>
         </section>
+
+        {format.cadence ? (
+          <section className="format-cadence" aria-labelledby="format-cadence-title">
+            <div>
+              <p className="kicker">Ритм работы</p>
+              <h2 id="format-cadence-title">Финансы всегда в поле зрения</h2>
+            </div>
+            <div className="format-cadence-grid">
+              {format.cadence.map((item) => (
+                <article key={item.label}>
+                  <span>{item.label}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="format-detail-grid">
           <div>
@@ -97,6 +123,25 @@ export default async function FormatPage({ params }: FormatPageProps) {
           </ul>
           <p className="format-timeframe"><strong>Срок и ритм работы:</strong> {format.timeframe}</p>
         </section>
+
+        {format.notIncluded ? (
+          <section className="format-boundaries" aria-labelledby="format-boundaries-title">
+            <div>
+              <p className="kicker">Границы работы</p>
+              <h2 id="format-boundaries-title">Что не входит в сопровождение</h2>
+            </div>
+            <ul>
+              {format.notIncluded.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+          </section>
+        ) : null}
+
+        {format.longTerm ? (
+          <section className="format-long-term">
+            <span>Почему важен долгий горизонт</span>
+            <p>{format.longTerm}</p>
+          </section>
+        ) : null}
 
         {otherFormat ? (
           <nav className="format-next" aria-label="Другой формат работы">
