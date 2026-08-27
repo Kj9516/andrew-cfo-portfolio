@@ -178,6 +178,7 @@ export function PricingCard({ plan }: { plan: PricingPlan | ProjectPricing }) {
   const recommended = "recommended" in plan ? plan.recommended : false;
   const note = "priceNote" in plan ? plan.priceNote : plan.duration;
   const bonus = "bonus" in plan ? plan.bonus : undefined;
+  const highlightedServices = "highlightedServices" in plan ? plan.highlightedServices : undefined;
 
   return (
     <article className={`pricing-card ${recommended ? "pricing-card-recommended" : ""}`}>
@@ -191,7 +192,11 @@ export function PricingCard({ plan }: { plan: PricingPlan | ProjectPricing }) {
       </div>
       <p className="pricing-audience">{plan.audience}</p>
       <ul>
-        {plan.services.map((service) => <li key={service}>{service}</li>)}
+        {plan.services.map((service) => (
+          <li className={highlightedServices?.includes(service) ? "pricing-service-highlight" : undefined} key={service}>
+            {service}
+          </li>
+        ))}
       </ul>
       {bonus ? <p className="pricing-bonus">{bonus}</p> : null}
       <a className="button button-primary" href={telegram} target="_blank" rel="noreferrer" aria-label={`${plan.cta} в Telegram`}>
