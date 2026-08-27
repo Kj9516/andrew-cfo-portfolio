@@ -85,6 +85,7 @@ export default async function CasePage({ params }: CasePageProps) {
           <div>
             <p>{caseItem.context}</p>
             <p>{caseItem.initialState}</p>
+            {caseItem.quote ? <blockquote className="case-owner-quote">«{caseItem.quote}»</blockquote> : null}
             <p className="case-stakes"><strong>Что было на кону:</strong> {caseItem.stakes}</p>
           </div>
         </section>
@@ -135,6 +136,42 @@ export default async function CasePage({ params }: CasePageProps) {
             ) : null}
           </div>
         </section>
+
+        {caseItem.cashCorridor ? (
+          <section className="case-cash-corridor" aria-labelledby="case-cash-corridor">
+            <div className="case-corridor-copy">
+              <p className="kicker">Платёжный календарь / коридор остатков</p>
+              <h2 id="case-cash-corridor">{caseItem.cashCorridor.title}</h2>
+              <p>{caseItem.cashCorridor.lead}</p>
+            </div>
+            <figure className="case-corridor-figure">
+              <div className="case-corridor-legend" aria-hidden="true">
+                <span><i className="case-corridor-min-key" />Минимальная граница</span>
+                <span><i className="case-corridor-max-key" />Максимальная граница</span>
+                <span><i className="case-corridor-balance-key" />Общий остаток</span>
+              </div>
+              <div className="case-corridor-scroll">
+                <div className="case-corridor-chart" role="img" aria-label={`Остатки по дням месяца. Минимальная граница ${caseItem.cashCorridor.minimum.toLocaleString("ru-RU")} рублей`}>
+                  <div className="case-corridor-line case-corridor-line-max"><span>{caseItem.cashCorridor.maximum.toLocaleString("ru-RU")} ₽</span></div>
+                  <div className="case-corridor-line case-corridor-line-min" style={{ bottom: `${(caseItem.cashCorridor.minimum / caseItem.cashCorridor.maximum) * 100}%` }}><span>{caseItem.cashCorridor.minimum.toLocaleString("ru-RU")} ₽</span></div>
+                  <div className="case-corridor-bars">
+                    {caseItem.cashCorridor.balances.map((balance, index) => (
+                      <div className="case-corridor-day" key={`${index + 1}-${balance}`}>
+                        <div
+                          className={`case-corridor-bar ${balance < caseItem.cashCorridor!.minimum ? "case-corridor-bar-risk" : ""}`}
+                          style={{ height: `${(balance / caseItem.cashCorridor!.maximum) * 100}%` }}
+                          title={`${index + 1}-й день: ${balance.toLocaleString("ru-RU")} ₽`}
+                        />
+                        <span>{index + 1}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <figcaption>{caseItem.cashCorridor.caption}</figcaption>
+            </figure>
+          </section>
+        ) : null}
 
         {caseItem.dealMix ? (
           <section className="case-deal-growth" aria-labelledby="case-deal-growth">
