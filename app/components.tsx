@@ -8,6 +8,7 @@ const mainNavLinks = [
   { href: "/pricing", label: "Тарифы" },
   { href: "/materials", label: "Материалы" },
   { href: "/#about", label: "Обо мне" },
+  { href: "/#reports", label: "Отчёты" },
   { href: "/#formats", label: "Форматы" },
 ];
 

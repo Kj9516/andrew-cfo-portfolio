@@ -2,12 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { CaseGrid, ContactCta, Footer, Header } from "./components";
 import { cases, proofPoints, workFormats } from "./data";
+import { FinancialScrollAnimation } from "./FinancialScrollAnimation";
+import { financialReportGroups } from "./financialReports";
 
 const orderedCases = [...cases].sort((a, b) => a.order - b.order);
 
 export default function Home() {
+  let slotIndex = 0;
+
   return (
     <main>
+      <FinancialScrollAnimation />
       <div className="dark-stage">
         <Header dark />
         <section className="hero shell" id="top">
@@ -80,6 +85,38 @@ export default function Home() {
           <p className="large-copy">Я отвечал за финансы как консультант и как собственник: нанимал людей, закупал товар, проходил сезонность и закрывал обязательства.</p>
           <p>Поэтому смотрю на цифры не только как наёмный сотрудник, а как предприниматель и болею за результат. Каждое решение прогоняю через призму собственника.</p>
           <div className="about-facts"><div><strong>Деньги</strong><span>платежи, запасы и обязательства</span></div><div><strong>Учёт</strong><span>ДДС, ОПиУ, баланс и план-факт</span></div><div><strong>Решения</strong><span>рост, пауза или выход из модели</span></div></div>
+        </div>
+      </section>
+
+      <section className="reports-section" id="reports">
+        <div className="shell">
+          <div className="reports-intro">
+            <p className="kicker kicker-light">Результат системы</p>
+            <h2>Разрозненные цифры складываются в управленческие отчёты</h2>
+            <p>ДДС, ОПиУ и баланс показывают не отдельные операции, а связи между деньгами, прибылью и обязательствами.</p>
+          </div>
+          <div className="reports-grid">
+            {financialReportGroups.map((group) => (
+              <article className="report-card" key={group.title}>
+                <header>
+                  <span>{group.number}</span>
+                  <h3>{group.title}</h3>
+                  <small>{group.subtitle}</small>
+                </header>
+                <div className="report-rows">
+                  {group.rows.map((row) => {
+                    const currentSlot = slotIndex++;
+                    return (
+                      <div className={`report-row ${row.kind ? `report-row-${row.kind}` : ""} ${row.tone === "total" ? "report-row-total" : ""}`} key={`${group.title}-${row.label}`}>
+                        <span>{row.label}</span>
+                        <i data-finance-slot={currentSlot} />
+                      </div>
+                    );
+                  })}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
