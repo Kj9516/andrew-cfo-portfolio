@@ -90,7 +90,7 @@ export function FinancialScrollAnimation({ children }: { children: ReactNode }) 
         const progress = smooth(raw);
         const settled = raw >= 1;
         const phase = seed(index, 1) * Math.PI * 2;
-        const speed = 0.18 + seed(index, 2) * 0.22;
+        const speed = (0.18 + seed(index, 2) * 0.22) * 0.75;
         const rangeX = Math.max(1, width - rect.width - 36);
         const rangeY = Math.max(1, height - rect.height - 90);
         const roamX = 18 + (0.5 + 0.46 * Math.sin(seconds * speed + phase)) * rangeX;
