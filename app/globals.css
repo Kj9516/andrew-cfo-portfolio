@@ -152,9 +152,9 @@ html,body{overflow-x:hidden}img{max-width:100%}p,h1,h2,h3,li,strong,span,small,a
 
 /* Figures appear only at the end of the cases, then settle into their report rows. */
 .home-refresh .cases-section{padding-bottom:0}
-.finance-origin{height:205px;position:relative;margin-top:28px;pointer-events:none}
+.finance-origin{height:80px;position:relative;margin-top:28px;pointer-events:none}
 .report-flight-layer{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden;visibility:hidden;contain:strict}
-.report-flight{position:absolute;top:0;left:0;display:block;text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;opacity:0;will-change:transform,opacity;color:#58749e}
+.report-flight{position:absolute;top:0;left:0;display:block;text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;opacity:0;transform-origin:center;will-change:transform,opacity;color:#58749e}
 .report-flight-positive{color:#488e79}.report-flight-negative{color:#af8077}.report-flight-total{color:#7d91b5}
-@media(max-width:1100px){.finance-origin{height:205px}.home-refresh .reports-grid{row-gap:180px}}
+@media(max-width:1100px){.finance-origin{height:205px}.home-refresh .reports-grid{row-gap:24px}}
 @media(prefers-reduced-motion:reduce){.report-flight-layer{display:none}.finance-origin{height:30px}.home-refresh .reports-grid{row-gap:24px}.report-value{opacity:1!important}}
