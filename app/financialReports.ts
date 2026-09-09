@@ -16,7 +16,7 @@ export const financialReportGroups: FinancialReportGroup[] = [
   {
     number: "01",
     title: "ДДС",
-    subtitle: "движение денег",
+    subtitle: "Движение денег",
     rows: [
       { label: "Остаток на начало", value: "4 820 000 ₽", tone: "total" },
       { label: "Поступления", value: "+32 462 614 ₽", tone: "positive" },
@@ -29,7 +29,7 @@ export const financialReportGroups: FinancialReportGroup[] = [
   {
     number: "02",
     title: "ОПиУ",
-    subtitle: "прибыль бизнеса",
+    subtitle: "Прибыль бизнеса",
     rows: [
       { label: "Выручка", value: "+30 389 676 ₽", tone: "positive" },
       { label: "Себестоимость", value: "-25 338 630 ₽", tone: "negative" },
@@ -44,12 +44,12 @@ export const financialReportGroups: FinancialReportGroup[] = [
   {
     number: "03",
     title: "Баланс",
-    subtitle: "что есть и кому должны",
+    subtitle: "Что есть и кому должны",
     rows: [
       { label: "Активы", value: "32 462 614 ₽", tone: "total", kind: "group" },
       { label: "Деньги", value: "8 578 462 ₽", tone: "positive", kind: "child" },
       { label: "Запасы", value: "13 086 695 ₽", tone: "positive", kind: "child" },
-      { label: "Дебиторка", value: "10 797 457 ₽", tone: "positive", kind: "child" },
+      { label: "Долги клиентов", value: "10 797 457 ₽", tone: "positive", kind: "child" },
       { label: "Пассивы", value: "32 462 614 ₽", tone: "total", kind: "group" },
       { label: "Обязательства", value: "24 040 857 ₽", tone: "positive", kind: "child" },
       { label: "Капитал", value: "8 421 757 ₽", tone: "positive", kind: "child" },

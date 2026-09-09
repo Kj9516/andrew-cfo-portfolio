@@ -27,14 +27,14 @@ export function Header({ dark = false }: { dark?: boolean }) {
         <nav className="nav" aria-label="Основная навигация">
           {mainNavLinks.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
         </nav>
-        <a className="header-cta" href={telegram} target="_blank" rel="noreferrer" aria-label="Обсудить бизнес в Telegram">
-          Обсудить бизнес <span aria-hidden="true">↗</span>
+        <a className="header-cta" href={telegram} target="_blank" rel="noreferrer" aria-label="Записаться на диагностику в Telegram">
+          Записаться на диагностику <span aria-hidden="true">↗</span>
         </a>
         <details className="mobile-nav">
           <summary aria-label="Открыть меню"><span aria-hidden="true" /></summary>
           <nav aria-label="Мобильная навигация">
             {mainNavLinks.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
-            <a href={telegram} target="_blank" rel="noreferrer">Обсудить бизнес <span aria-hidden="true">↗</span></a>
+            <a href={telegram} target="_blank" rel="noreferrer">Записаться на диагностику <span aria-hidden="true">↗</span></a>
           </nav>
         </details>
       </div>
@@ -80,12 +80,12 @@ export function ContactCta({ compact = false }: { compact?: boolean }) {
       <div className="shell contact-cta-grid">
         <div>
           <p className="kicker kicker-light">Диагностика / 20–30 минут</p>
-          <h2>Разберём задачу и проверим, какой формат работы нужен.</h2>
+          <h2>Начнём с вашей задачи.<br />Что сейчас непонятно в финансах?</h2>
         </div>
         <div className="contact-cta-copy">
-          <p>Посмотрим данные, текущие отчёты и проблему собственника. После этого станет понятно, нужен ли проект, сопровождение или отдельная настройка.</p>
+          <p>За 20–30 минут обсудим ситуацию, посмотрим, какие данные уже есть и чего не хватает для ответа. Определим следующий шаг: настройку учёта, сопровождение или отдельный расчёт.</p><p>Напишите в Telegram, чем занимается бизнес и какой вопрос хотите решить. Если есть отчёты — подготовьте их к разговору.</p><p className="diagnostic-outcome">Итог встречи: предварительная оценка задачи и понятный следующий шаг.</p>
           <a className="button button-light" href={telegram} target="_blank" rel="noreferrer" aria-label="Написать в Telegram для диагностики">
-            Написать в Telegram <span aria-hidden="true">↗</span>
+            Записаться в Telegram <span aria-hidden="true">↗</span>
           </a>
           <a className="plain-contact" href="mailto:suslenkov.andrew@mail.ru">suslenkov.andrew@mail.ru</a>
         </div>
@@ -143,7 +143,7 @@ export function CaseArtifact({ caseItem, compact = false }: { caseItem: CaseStud
 export function CaseCard({ caseItem, href }: { caseItem: CaseStudy; href?: string }) {
   const content = (
     <>
-      <CaseArtifact caseItem={caseItem} compact />
+      <div className={`case-result-preview case-result-${caseItem.visualTheme}`}><span>{caseItem.role === "Собственник" ? "Мой предпринимательский опыт" : "Клиентский кейс"}</span><strong>{caseItem.keyMetric}</strong><p>{caseItem.outcomeLabel}</p></div>
       <div className="case-card-body">
         <div className="case-card-topline">
           <span>{caseItem.number}</span>
