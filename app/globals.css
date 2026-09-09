@@ -114,10 +114,6 @@ html,body{overflow-x:hidden}img{max-width:100%}p,h1,h2,h3,li,strong,span,small,a
 .home-refresh .report-row{grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:14px;min-height:64px;font-size:12px;overflow:hidden}
 .report-value{font-size:12px;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums;color:#d6dfec}
 .report-value-negative{color:#e4b6b2}.report-value-positive{color:#a0d5c5}.report-value-total{color:#fff}
-.report-card-arrived .report-value{animation:report-value-arrive .65s ease both}
-.report-card-arrived .report-row:nth-child(2n) .report-value{animation-delay:.08s}
-.report-card-arrived .report-row:nth-child(3n) .report-value{animation-delay:.16s}
-@keyframes report-value-arrive{from{opacity:.45;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .report-takeaway{display:grid;grid-template-columns:1fr 2fr;gap:30px;align-items:start;margin-top:30px;padding:26px 28px;border:1px solid #40506a;background:#202b42}
 .report-takeaway>span{color:var(--amber);font-size:17px;font-weight:750;line-height:1.5}
 .report-takeaway p{color:#c7d0df;line-height:1.7;font-size:14px;margin:0}
@@ -152,5 +148,13 @@ html,body{overflow-x:hidden}img{max-width:100%}p,h1,h2,h3,li,strong,span,small,a
 @media(max-width:800px){.home-refresh .hero{grid-template-columns:1fr;padding-block:44px;gap:36px;min-height:0}.home-refresh .hero h1{max-width:650px;font-size:clamp(40px,7.5vw,60px)}.home-refresh .hero-lead{font-size:19px}.home-refresh .hero-visual{width:100%;max-width:450px;min-height:0;margin-inline:auto}.home-refresh .portrait-frame{min-height:400px}.owner-question-grid,.working-steps-list{grid-template-columns:1fr}.owner-question-grid article{padding:26px}.owner-question-grid h3{margin-top:20px}.home-refresh .materials-teaser-grid{grid-template-columns:1fr;gap:35px}.report-takeaway{grid-template-columns:1fr;gap:12px}.home-refresh .about-section{grid-template-columns:1fr;gap:30px}.home-refresh .about-image{height:380px;min-height:0}.home-refresh .about-image img{object-position:center 25%}.home-refresh .formats-grid{grid-template-columns:1fr}.home-refresh .proof-grid>div{padding:22px 16px}.home-refresh .proof-grid strong{font-size:29px}}
 @media(max-width:700px){.refresh-heading h2 br,.home-refresh .reports-intro h2 br{display:none}.owner-questions{padding-block:55px 25px}.home-refresh .cases-section{padding-block:35px 55px}.home-refresh .reports-section,.home-refresh .formats-section,.home-refresh .materials-teaser{padding-block:55px}.working-steps{padding-block:55px 30px}.home-refresh .about-section{padding-block:30px 55px}.home-refresh .faq-section{padding-block:55px}.case-result-preview{padding:24px;min-height:160px}.home-refresh .case-card-body{padding:24px}.home-refresh .case-card h3{font-size:24px}.home-refresh .hero-actions{align-items:flex-start;flex-direction:column}.home-refresh .hero-actions .button{width:auto;max-width:100%;padding-inline:18px;gap:15px}.hero-secondary{padding-block:7px}.home-refresh .sheet-kpis div{padding:18px 14px}.home-refresh .sheet-kpis strong{font-size:21px}.home-refresh .report-row{font-size:12px;padding:14px;grid-template-columns:minmax(0,1fr) auto}.report-value{font-size:12px}.report-takeaway{padding:22px}}
 @media(max-width:390px){.home-refresh .hero h1{font-size:37px}.home-refresh .hero .kicker{font-size:10px}.home-refresh .proof-grid strong{font-size:25px}.home-refresh .proof-grid span{font-size:12px}.home-refresh .sheet-row{grid-template-columns:48px 1fr 80px;font-size:11px;padding-inline:12px}.home-refresh .sheet-kpis strong{font-size:19px}.home-refresh .report-row{gap:7px}.report-row-child>span{padding-left:12px}}
-@media(prefers-reduced-motion:reduce){.report-card-arrived .report-value{animation:none}}
 .case-card-topline span{font-size:12px}
+
+/* Figures appear only at the end of the cases, then settle into their report rows. */
+.home-refresh .cases-section{padding-bottom:0}
+.finance-origin{height:205px;position:relative;margin-top:28px;pointer-events:none}
+.report-flight-layer{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden;visibility:hidden;contain:strict}
+.report-flight{position:absolute;top:0;left:0;display:block;text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;opacity:0;will-change:transform,opacity;color:#58749e}
+.report-flight-positive{color:#488e79}.report-flight-negative{color:#af8077}.report-flight-total{color:#7d91b5}
+@media(max-width:1100px){.finance-origin{height:205px}.home-refresh .reports-grid{row-gap:180px}}
+@media(prefers-reduced-motion:reduce){.report-flight-layer{display:none}.finance-origin{height:30px}.home-refresh .reports-grid{row-gap:24px}.report-value{opacity:1!important}}

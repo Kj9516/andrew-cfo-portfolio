@@ -58,6 +58,7 @@ export default function Home() {
         <div className="refresh-heading"><p className="kicker">Результаты работы</p><h2>Больше прибыли.<br />Меньше решений вслепую.</h2><p>Истории клиентских компаний и моего бизнеса: что показал учёт и что мы изменили.</p></div>
         <CaseGrid items={orderedCases} getHref={(caseItem) => `/cases/${caseItem.slug}`} />
         <div className="section-link-row"><Link className="button button-primary" href="/cases">Все кейсы <span aria-hidden="true">→</span></Link></div>
+        <div className="finance-origin" data-finance-origin aria-hidden="true" />
       </section>
 
       <section className="reports-section" id="reports">
